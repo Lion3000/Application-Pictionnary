@@ -27,12 +27,12 @@
 					<input type="text" name="nom" id="nom" required />  
 				</li>
 				<li>  
-					<label for="nom">Téléphone :</label>  
+					<label for="tel">Téléphone :</label>  
 					<input type="tel" name="tel" id="tel" />  
 				</li>
 				<li>  
 					<label for="siteWeb">Site Web :</label>  
-					<input type="url" name="siteWeb" id="siteWeb" />  
+					<input type="url" name="website" id="website" />  
 				</li>
 				<li>  
 					<label for="sexe">Sexe :</label><br />

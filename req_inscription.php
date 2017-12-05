@@ -26,6 +26,12 @@ try {
     // En SQL: sélectionner tous les tuples de la table USERS tels que l'email est égal à $email.  
     $sql = $dbh->query("SELECT email FROM users WHERE email = '$email'");  
     if ($sql->rowCount() >= 1) {  
+		$params = $sql->fetch();
+		$paramsString = ""
+		foreach($params as $param)
+			//$paramsString .= 
+			var_dump($param);
+		//header("Location: main.php?".$params."erreur=".urlencode("L'utilisateur existe déjà!"));  
         // rediriger l'utilisateur ici, avec tous les paramètres du formulaire plus le message d'erreur  
         // utiliser à bon escient la méthode htmlspecialchars http://www.php.net/manual/fr/function.htmlspecialchars.php          // et/ou la méthode urlencode http://php.net/manual/fr/function.urlencode.php  
 		
@@ -35,9 +41,18 @@ try {
         $sql = $dbh->prepare("INSERT INTO users (email, password, nom, prenom, tel, website, sexe, birthdate, ville, taille, couleur, profilepic) "  
                 . "VALUES (:email, :password, :nom, :prenom, :tel, :website, :sexe, :birthdate, :ville, :taille, :couleur, :profilepic)");  
         $sql->bindValue(":email", $email);  
-        // de même, lier la valeur pour le mot de passe  
-        // lier la valeur pour le nom, attention le nom peut être nul, il faut alors lier avec NULL, ou DEFAULT  
-        // idem pour le prenom, tel, website, birthdate, ville, taille, profilepic  
+        $sql->bindValue(":password", $password);  
+        $sql->bindValue(":nom", empty($nom)?$nom:"NULL" );  
+        $sql->bindValue(":prenom", empty($prenom)?$prenom:"NULL");  
+        $sql->bindValue(":tel", empty($tel)?$tel:"NULL");  
+        $sql->bindValue(":website", empty($website)?$website:"NULL");  
+        $sql->bindValue(":sexe", empty($sexe)?$sexe:"NULL");  
+        $sql->bindValue(":birthdate", empty($birthdate)?$birthdate:"NULL");  
+        $sql->bindValue(":ville", empty($ville)?$ville:"NULL");  
+        $sql->bindValue(":taille", empty($taille)?$taille:"NULL");  
+        $sql->bindValue(":couleur", $couleur);  
+        $sql->bindValue(":profilepic", empty($profilepic)?$profilepic:"NULL");  
+ 
         // n.b., notez: birthdate est au bon format ici, ce serait pas le cas pour un SGBD Oracle par exemple  
         // idem pour la couleur, attention au format ici (7 caractères, 6 caractères attendus seulement)  
         // idem pour le prenom, tel, website  
@@ -48,21 +63,21 @@ try {
             echo "PDO::errorInfo():<br/>";  
             $err = $sql->errorInfo();  
             print_r($err);  
-        } else {  
+        } 
+		else {  
   
             // ici démarrer une session  
+			session_start();
   
             // ensuite on requête à nouveau la base pour l'utilisateur qui vient d'être inscrit, et   
             $sql = $dbh->query("SELECT u.id, u.email, u.nom, u.prenom, u.couleur, u.profilepic FROM USERS u WHERE u.email='".$email."'");  
-            if ($sql->rowCount()<1) {  
+			
+            if ($sql->rowCount()<1) 
                 header("Location: main.php?erreur=".urlencode("un problème est survenu"));  
-            }  
-            else {  
-                // on récupère la ligne qui nous intéresse avec $sql->fetch(),   
-                // et on enregistre les données dans la session avec $_SESSION["..."]=...  
-            }  
+            else
+				$_SESSION["user"] =	serialize($sql->fetch());		
   
-            // ici,  rediriger vers la page main.php  
+            header("Location: main.php");
         }  
         $dbh = null;  
     }  
