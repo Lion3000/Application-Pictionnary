@@ -2,8 +2,9 @@
 <html>  
 	<head>  
 		<meta charset=utf-8 />  
-		<title>Pictionnary - Inscription</title>  
-		 <script src="js/source.js"></script> 
+		<title>Pictionnary - Inscription</title>
+		<link rel="stylesheet" media="screen" href="css/styles.css" >		
+		<script src="js/source.js"></script> 
 	</head>  
 	<body>
 		<h2>Inscrivez-vous</h2>  

@@ -31,7 +31,7 @@ function loadProfilePic(e) {
 	var canvas = document.getElementById("preview");  
 	var ctx = canvas.getContext("2d");  
 	// on réinitialise le canvas: on l'efface, et déclare sa largeur et hauteur à 0  
-	ctx.setFillColor("white");  
+	ctx.setFillColor = "white";  
 	ctx.fillRect(0,0,canvas.width,canvas.height);  
 	canvas.width=0;  
 	canvas.height=0;  
@@ -61,18 +61,14 @@ function loadProfilePic(e) {
 			var width = img.width;  
 			var height = img.height;  
 
-			// A FAIRE: si on garde les deux lignes suivantes, on rétrécit l'image mais elle sera déformée  
-			// Vous devez supprimer ces lignes, et modifier width et height pour:  
-			//    - garder les proportions,   
-			//    - et que le maximum de width et height soit égal à 96  
 			var width = MAX_WIDTH;  
 			var height = MAX_HEIGHT;  
 			  
 			canvas.width = width;  
-			canvas.height = height;  
+			canvas.height = height * (img.height / img.width);  
 			// on dessine l'image dans le canvas à la position 0,0 (en haut à gauche)  
 			// et avec une largeur de width et une hauteur de height  
-			ctx.drawImage(img, 0, 0, width, height);  
+			ctx.drawImage(img, 0, 0, width, height * (img.height / img.width));  
 			// on exporte le contenu du canvas (l'image redimensionnée) sous la forme d'une data url  
 			var dataurl = canvas.toDataURL("image/png");  
 			// on donne finalement cette dataurl comme valeur au champs profilepic  
