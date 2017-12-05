@@ -37,7 +37,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 
 /* === Form Elements === */
 .inscription label {
-    width:150px;
+    width:170px;
     margin-top: 3px;
     display:inline-block;
     float:left;
@@ -48,7 +48,9 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     width:220px;
     padding:5px 8px;
 }
-#submit {margin-left:156px;}
+#submit {margin-left:176px;}
+#taille {margin:0px;}
+#couleur {width:220px;}
 
 /* form element visual styles */
 .inscription input, .inscription textarea {
@@ -131,6 +133,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     padding: 6px 20px;
     text-align: center;
     text-shadow: 0 -1px 0 #396715;
+	height: 40px;
 }
 #submit:hover {
     opacity:.85;
@@ -143,5 +146,4 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     -moz-box-shadow: 0 0 10px 5px #356b0b inset;
     -ms-box-shadow: 0 0 10px 5px #356b0b inset;
     -o-box-shadow: 0 0 10px 5px #356b0b inset;
-
 }
