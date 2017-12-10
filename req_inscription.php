@@ -27,21 +27,19 @@ try {
     $sql = $dbh->query("SELECT * FROM users WHERE email = '$email'");  
     if ($sql->rowCount() >= 1) {  
 		// rediriger l'utilisateur ici, avec tous les paramètres du formulaire plus le message d'erreur  
-		        // utiliser à bon escient la méthode htmlspecialchars http://www.php.net/manual/fr/function.htmlspecialchars.php          // et/ou la méthode urlencode http://php.net/manual/fr/function.urlencode.php
+		// utiliser à bon escient la méthode htmlspecialchars http://www.php.net/manual/fr/function.htmlspecialchars.php          // et/ou la méthode urlencode http://php.net/manual/fr/function.urlencode.php
 		header("Location: inscription.php?"
-		."email".		htmlspecialchars($_POST['email']))
-		."&password".	htmlspecialchars($_POST['password'])
-		."&nom".		htmlspecialchars($_POST['nom'])
-		."&prenom".		htmlspecialchars($_POST['prenom'])
-		."&tel".		htmlspecialchars($_POST['tel'])
-		."&website".	htmlspecialchars($_POST['website'])
-		."&sexe".		htmlspecialchars($_POST['sexe'])
-		."&birthdate".	htmlspecialchars($_POST['birthdate'])
-		."&ville".		htmlspecialchars($_POST['ville'])
-		."&taille".		htmlspecialchars($_POST['taille'])
-		."&couleur".	htmlspecialchars($_POST['couleur'])
-		."&profilepic".	htmlspecialchars($_POST['profilepic'])
-		."&erreur=".	urlencode("L'utilisateur existe déjà!"));    
+			."&nom=".			htmlspecialchars($nom)
+			."&prenom=".		htmlspecialchars($prenom)
+			."&tel=".			htmlspecialchars($tel)
+			."&website=".		htmlspecialchars($website)
+			."&sexe=".			htmlspecialchars($sexe)
+			."&birthdate=".		htmlspecialchars($birthdate)
+			."&ville=".			htmlspecialchars($ville)
+			."&taille=".		htmlspecialchars($taille)
+			."&couleur=".		htmlspecialchars(str_replace('#', '', $couleur))
+			."&erreur=".		urlencode("L'utilisateur existe deja!")
+		);    
 	}  
     else {  
         // Tenter d'inscrire l'utilisateur dans la base  
@@ -82,7 +80,7 @@ try {
             $sql = $dbh->query("SELECT u.id, u.email, u.nom, u.prenom, u.couleur, u.profilepic FROM USERS u WHERE u.email='".$email."'");  
 			
             if ($sql->rowCount()<1) 
-                header("Location: main.php?erreur=".urlencode("un problème est survenu"));  
+                header("Location: main.php?erreur=".urlencode("Un problème est survenu!"));  
             else
 				$_SESSION["user"] =	serialize($sql->fetch());		
   
