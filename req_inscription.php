@@ -24,10 +24,10 @@ try {
   
     // Vérifier si un utilisateur avec cette adresse email existe dans la table.  
     // En SQL: sélectionner tous les tuples de la table USERS tels que l'email est égal à $email.  
-    $sql = $dbh->query("SELECT email FROM users WHERE email = '$email'");  
+    $sql = $dbh->query("SELECT * FROM users WHERE email = '$email'");  
     if ($sql->rowCount() >= 1) {  
-		$params = $sql->fetch();
-		$paramsString = ""
+		$params = $sql->fetch(PDO::FETCH_BOTH);
+		$paramsString = "";
 		foreach($params as $param)
 			//$paramsString .= 
 			var_dump($param);
