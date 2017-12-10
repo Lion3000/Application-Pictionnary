@@ -9,6 +9,7 @@
 		<script src="js/source.js"></script> 
 	</head>  
 	<body <?PHP if(isset($_GET['birthdate']) && !empty($_GET['birthdate'])) echo "onload=\"computeAge()\""; ?>>
+		<?PHP include("header.php"); ?>
 		<h2>Inscrivez-vous</h2>  
 		<?PHP
 		if(isset($_GET['erreur']) && !empty($_GET['erreur'])){
