@@ -26,20 +26,29 @@ try {
     // En SQL: sélectionner tous les tuples de la table USERS tels que l'email est égal à $email.  
     $sql = $dbh->query("SELECT * FROM users WHERE email = '$email'");  
     if ($sql->rowCount() >= 1) {  
-		$params = $sql->fetch(PDO::FETCH_BOTH);
-		$paramsString = "";
-		foreach($params as $param)
-			//$paramsString .= 
-			var_dump($param);
-		//header("Location: main.php?".$params."erreur=".urlencode("L'utilisateur existe déjà!"));  
-        // rediriger l'utilisateur ici, avec tous les paramètres du formulaire plus le message d'erreur  
-        // utiliser à bon escient la méthode htmlspecialchars http://www.php.net/manual/fr/function.htmlspecialchars.php          // et/ou la méthode urlencode http://php.net/manual/fr/function.urlencode.php  
-		
+		// rediriger l'utilisateur ici, avec tous les paramètres du formulaire plus le message d'erreur  
+		        // utiliser à bon escient la méthode htmlspecialchars http://www.php.net/manual/fr/function.htmlspecialchars.php          // et/ou la méthode urlencode http://php.net/manual/fr/function.urlencode.php
+		header("Location: inscription.php?"
+		."email".		htmlspecialchars($_POST['email']))
+		."&password".	htmlspecialchars($_POST['password'])
+		."&nom".		htmlspecialchars($_POST['nom'])
+		."&prenom".		htmlspecialchars($_POST['prenom'])
+		."&tel".		htmlspecialchars($_POST['tel'])
+		."&website".	htmlspecialchars($_POST['website'])
+		."&sexe".		htmlspecialchars($_POST['sexe'])
+		."&birthdate".	htmlspecialchars($_POST['birthdate'])
+		."&ville".		htmlspecialchars($_POST['ville'])
+		."&taille".		htmlspecialchars($_POST['taille'])
+		."&couleur".	htmlspecialchars($_POST['couleur'])
+		."&profilepic".	htmlspecialchars($_POST['profilepic'])
+		."&erreur=".	urlencode("L'utilisateur existe déjà!"));    
 	}  
     else {  
         // Tenter d'inscrire l'utilisateur dans la base  
-        $sql = $dbh->prepare("INSERT INTO users (email, password, nom, prenom, tel, website, sexe, birthdate, ville, taille, couleur, profilepic) "  
-                . "VALUES (:email, :password, :nom, :prenom, :tel, :website, :sexe, :birthdate, :ville, :taille, :couleur, :profilepic)");  
+        $sql = $dbh->prepare(
+			"INSERT INTO users (email, password, nom, prenom, tel, website, sexe, birthdate, ville, taille, couleur, profilepic) " . 
+            "VALUES (:email, :password, :nom, :prenom, :tel, :website, :sexe, :birthdate, :ville, :taille, :couleur, :profilepic)"
+		);
         $sql->bindValue(":email", $email);  
         $sql->bindValue(":password", $password);  
         $sql->bindValue(":nom", empty($nom)?$nom:"NULL" );  
