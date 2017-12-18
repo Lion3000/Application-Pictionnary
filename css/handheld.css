@@ -7,3 +7,12 @@
 		background-color: red;
 	}
 }
+
+@media only screen and (orientation: landscape) {
+	* {
+		box-sizing: border-box;
+	}
+    body {
+        background-color: lightblue;
+    }
+}
