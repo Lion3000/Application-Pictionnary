@@ -49,16 +49,16 @@ try {
     		);
         $sql->bindValue(":email", $email);
         $sql->bindValue(":password", $password);
-        $sql->bindValue(":nom", empty($nom)?$nom:"NULL" );
-        $sql->bindValue(":prenom", empty($prenom)?$prenom:"NULL");
-        $sql->bindValue(":tel", empty($tel)?$tel:"NULL");
-        $sql->bindValue(":website", empty($website)?$website:"NULL");
-        $sql->bindValue(":sexe", empty($sexe)?$sexe:"NULL");
-        $sql->bindValue(":birthdate", empty($birthdate)?$birthdate:"NULL");
-        $sql->bindValue(":ville", empty($ville)?$ville:"NULL");
-        $sql->bindValue(":taille", empty($taille)?$taille:"NULL");
+        $sql->bindValue(":nom", !empty($nom)?$nom:"NULL" );
+        $sql->bindValue(":prenom", !empty($prenom)?$prenom:"NULL");
+        $sql->bindValue(":tel", !empty($tel)?$tel:"NULL");
+        $sql->bindValue(":website", !empty($website)?$website:"NULL");
+        $sql->bindValue(":sexe", !empty($sexe)?$sexe:"NULL");
+        $sql->bindValue(":birthdate", !empty($birthdate)?$birthdate:"NULL");
+        $sql->bindValue(":ville", !empty($ville)?$ville:"NULL");
+        $sql->bindValue(":taille", !empty($taille)?$taille:"NULL");
         $sql->bindValue(":couleur", $couleur);
-        $sql->bindValue(":profilepic", empty($profilepic)?$profilepic:"NULL");
+        $sql->bindValue(":profilepic", !empty($profilepic)?$profilepic:"NULL");
 
         // n.b., notez: birthdate est au bon format ici, ce serait pas le cas pour un SGBD Oracle par exemple
         // idem pour la couleur, attention au format ici (7 caract�res, 6 caract�res attendus seulement)

@@ -16,7 +16,7 @@ try {
       header("Location: main.php");
     }
     else{
-      header("Location: inscription.php?"
+      header("Location: main.php?"
   			."&erreur=".	urlencode("Le login ou mot de passe est incorrect!")
   		);
     }
