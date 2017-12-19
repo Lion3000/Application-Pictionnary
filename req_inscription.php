@@ -15,7 +15,7 @@ if (array_key_exists('sexe',$_POST)) {
 $birthdate=stripslashes($_POST['birthdate']);
 $ville=stripslashes($_POST['ville']);
 $taille=stripslashes($_POST['taille']);
-$couleur=stripslashes($_POST['couleur']);
+$couleur=stripslashes(str_replace('#', '', $_POST['couleur']));
 $profilepic=stripslashes($_POST['profilepic']);
 
 try {
@@ -37,7 +37,7 @@ try {
   			."&birthdate=".		htmlspecialchars($birthdate)
   			."&ville=".			htmlspecialchars($ville)
   			."&taille=".		htmlspecialchars($taille)
-  			."&couleur=".		htmlspecialchars(str_replace('#', '', $couleur))
+  			."&couleur=".		htmlspecialchars($couleur)
   			."&erreur=".		urlencode("L'utilisateur existe deja!")
   		);
   	}

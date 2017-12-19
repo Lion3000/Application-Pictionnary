@@ -2,17 +2,17 @@
 	* {
 		box-sizing: border-box;
 	}
-	
-	body{
+
+	/* body{
 		background-color: red;
-	}
+	} */
 }
 
 @media only screen and (orientation: landscape) {
 	* {
 		box-sizing: border-box;
 	}
-    body {
+    /* body {
         background-color: lightblue;
-    }
+    } */
 }

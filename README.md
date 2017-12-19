@@ -14,16 +14,17 @@
 
 #### C'est lequel qui doit être égal à l'attribut for du label ?
 
-#### Quels sont les deux scénarios où l'attribut title sera affiché ? 
+#### Quels sont les deux scénarios où l'attribut title sera affiché ?
 
 #### Encore une fois, quelle est la différence entre name et id pour un input ?
 
 #### Pourquoi est-ce qu'on a pas mis un attribut name ici ?
 
-#### Quel scénario justifie qu'on ait ajouté l'écouter validateMdp2() à l'évènement onkeyup de l'input mdp1 ? 
+#### Quel scénario justifie qu'on ait ajouté l'écouter validateMdp2() à l'évènement onkeyup de l'input mdp1 ?
 
 #### À quoi sert l'attribut disabled ?
 
+#### À quoi servent ces champs hidden ?
 
 ## Auteur
 
