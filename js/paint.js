@@ -39,6 +39,7 @@ window.onload = function() {
         command.command="start";
         command.x=e.x;
         command.y=e.y;
+        command.size=size;
         command.color=color;
         //c'est équivalent à:
         //command = {"command":"start", "x": e.x, "color":color};
@@ -63,6 +64,9 @@ window.onload = function() {
 
     var stopDrawing = function(e) {
       if(x0 != null && y0 != null){
+        var command = {"command":"stop", "x": e.x, "y": e.y};
+        drawingCommands.push(command);
+
         context.beginPath();
         context.moveTo(x0, y0);
         context.strokeStyle=color;
