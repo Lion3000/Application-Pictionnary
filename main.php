@@ -23,16 +23,18 @@
     <div>
 			<ol>
 				<?PHP
-				try {
-				    // Connect to server and select database.
-				    $dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');
-						$sql = $dbh->query("SELECT id, picture FROM drawings WHERE id_user='".$user['id']."'");
-						while ($result = $sql->fetch())
-							echo "<li><a href=\"guess.php\" class=\"w3-btn w3-blue\" ><img src=\"".$result['picture']."\" /></a></li>";
-				} catch (PDOException $e) {
-				    print "Erreur !: " . $e->getMessage() . "<br/>";
-				    $dbh = null;
-				    die();
+				if(isset($_SESSION['user'])){
+					try {
+					    // Connect to server and select database.
+					    $dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');
+							$sql = $dbh->query("SELECT id, picture FROM drawings WHERE id_user='".$user['id']."'");
+							while ($result = $sql->fetch())
+								echo "<li><a href=\"guess.php?id=".$result['id']."\" class=\"w3-btn w3-blue\" ><img src=\"".$result['picture']."\" /></a></li>";
+					} catch (PDOException $e) {
+					    print "Erreur !: " . $e->getMessage() . "<br/>";
+					    $dbh = null;
+					    die();
+					}
 				}
 				?>
 			</ol>
